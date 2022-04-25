@@ -50,7 +50,7 @@ class IntegrationBase
         for (int i = 0; i < static_cast<int>(dt_buf.size()); i++)
             propagate(dt_buf[i], acc_buf[i], gyr_buf[i]);
     }
-
+    // IMU预积分中采用中值积分递推Jacobian和Covariance构造误差的线性化递推方程，得到Jacobian和Covariance递推公式-> Paper 式9、10、11
     void midPointIntegration(double _dt, 
                             const Eigen::Vector3d &_acc_0, const Eigen::Vector3d &_gyr_0,
                             const Eigen::Vector3d &_acc_1, const Eigen::Vector3d &_gyr_1,
