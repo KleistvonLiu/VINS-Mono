@@ -58,7 +58,7 @@ class IntegrationBase
                             const Eigen::Vector3d &linearized_ba, const Eigen::Vector3d &linearized_bg,
                             Eigen::Vector3d &result_delta_p, Eigen::Quaterniond &result_delta_q, Eigen::Vector3d &result_delta_v,
                             Eigen::Vector3d &result_linearized_ba, Eigen::Vector3d &result_linearized_bg, bool update_jacobian)
-    {
+    {// 需要注意的是这里定义的delta_p等是累积的变化量，也就是说是从i时刻到当前时刻的变化量，这个才是最终要求的结果（为修正偏置一阶项），而result_delta_q等只是一个暂时的变量
         //ROS_INFO("midpoint integration");
         Vector3d un_acc_0 = delta_q * (_acc_0 - linearized_ba);
         Vector3d un_gyr = 0.5 * (_gyr_0 + _gyr_1) - linearized_bg;
