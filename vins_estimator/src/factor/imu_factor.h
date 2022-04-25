@@ -65,7 +65,7 @@ class IMUFactor : public ceres::SizedCostFunction<15, 7, 9, 7, 9>
         //sqrt_info.setIdentity();
         residual = sqrt_info * residual;
 
-        if (jacobians)
+        if (jacobians)//求r关于状态变量x的J，r是15维，x分了四块，维度分别是7 9 7 9，J应该是要给ceres
         {
             double sum_dt = pre_integration->sum_dt;
             Eigen::Matrix3d dp_dba = pre_integration->jacobian.template block<3, 3>(O_P, O_BA);
